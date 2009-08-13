@@ -118,17 +118,47 @@ public class ManagerPluginNewWizard extends Wizard implements INewWizard {
 
         String managerName = "foo"; // FIXME: use wizard page
         String packageName = "net.bioclipse.foo"; // FIXME: use wizard page
+        String bundleName = packageName;
 
-        // spring/context.xml
-        IPath path = projectPath.append("META-INF").append("spring").
-            append("context.xml");
+        // META-INF/MANIFEST.MF
+        IPath path = projectPath.append("META-INF").
+            append("MANIFEST.MF");
         IFile file = root.getFile(path);
         Templater context = new Templater(
+            this.getClass().getClassLoader().getResourceAsStream(
+                "src/templates/META-INF/MANIFEST.MF"
+            )
+        );
+        String fileContent = context.generate(
+            "packageName", packageName,
+            "bundleName", bundleName
+        );
+        createFile(monitor, file, fileContent);
+
+        // spring/context.xml
+        path = projectPath.append("META-INF").append("spring").
+            append("context.xml");
+        file = root.getFile(path);
+        context = new Templater(
             this.getClass().getClassLoader().getResourceAsStream(
                 "src/templates/META-INF/spring/context.xml"
             )
         );
-        String fileContent = context.generate(
+        fileContent = context.generate(
+            "managerName", managerName,
+            "packageName", packageName
+        );
+        createFile(monitor, file, fileContent);
+
+        // plugin.xml
+        path = projectPath.append("plugin.xml");
+        file = root.getFile(path);
+        context = new Templater(
+            this.getClass().getClassLoader().getResourceAsStream(
+                "src/templates/plugin.xml"
+            )
+        );
+        fileContent = context.generate(
             "managerName", managerName,
             "packageName", packageName
         );
