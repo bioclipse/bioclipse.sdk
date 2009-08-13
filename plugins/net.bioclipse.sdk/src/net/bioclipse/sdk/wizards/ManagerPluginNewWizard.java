@@ -43,10 +43,12 @@ import org.eclipse.ui.dialogs.WizardNewProjectCreationPage;
 public class ManagerPluginNewWizard extends Wizard implements INewWizard {
 
     private WizardNewProjectCreationPage fFirstPage;
+    private ManagerDataInputPage dataInputPage;
+
 
     private IWorkbench workbench;
     private IStructuredSelection selection;
-    
+
     private final static String TITLE = "New Bioclipe Manager Plugin Project";
 
     public ManagerPluginNewWizard() {
@@ -60,6 +62,7 @@ public class ManagerPluginNewWizard extends Wizard implements INewWizard {
         fFirstPage.setTitle(TITLE);
         fFirstPage.setDescription("Create a " + TITLE);
         addPage(fFirstPage);
+        addPage(dataInputPage= new ManagerDataInputPage());
     }
 
     @Override
