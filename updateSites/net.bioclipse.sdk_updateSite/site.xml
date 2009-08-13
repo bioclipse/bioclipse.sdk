@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <site>
-   <description url="http://sdk.update.bioclipse.net/">
+   <description url="http://pele.farmbio.uu.se/sdk/">
       Update site for the Bioclipse SDK.
    </description>
    <feature url="features/net.bioclipse.sdk_feature_1.0.0.v20090813.jar" id="net.bioclipse.sdk_feature" version="1.0.0.v20090813"/>
