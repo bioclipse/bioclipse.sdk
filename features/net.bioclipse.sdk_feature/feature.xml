@@ -2,7 +2,7 @@
 <feature
       id="net.bioclipse.sdk_feature"
       label="Bioclipse SDK Feature"
-      version="2.0.1.v20090807"
+      version="1.0.0.v20090813"
       provider-name="The Bioclipse Team"
       plugin="net.bioclipse.sdk">
 
@@ -29,7 +29,7 @@ is available at http://www.eclipse.org/legal/epl-v10.html
    </license>
 
    <url>
-      <update label="Bioclipse Update site" url="http://update2.bioclipse.net"/>
+      <update label="Bioclipse SDK Update Site" url="http://pele.farmbio.uu.se/cdk"/>
    </url>
 
    <requires>
