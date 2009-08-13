@@ -126,7 +126,7 @@ public class ManagerPluginNewWizard extends Wizard implements INewWizard {
         // spring/context.xml
         Templater context = new Templater(
             this.getClass().getClassLoader().getResourceAsStream(
-                "templates/META-INF/spring/content.xml"
+                "src/templates/META-INF/spring/context.xml"
             )
         );
         String fileContent = context.generate(
