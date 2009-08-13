@@ -13,11 +13,7 @@ Require-Bundle:
  net.bioclipse.ui,
  org.springframework.bundle.spring.aop,
  net.sf.cglib,
- org.springframework.osgi.aopalliance.osgi,
- org.openscience.cdk.formula,
- org.openscience.cdk.ioformats,
- org.openscience.cdk.fingerprint,
- net.bioclipse.inchi
+ org.springframework.osgi.aopalliance.osgi
 Bundle-ActivationPolicy: lazy
 Export-Package: ${packageName}
 Import-Package: org.apache.log4j
