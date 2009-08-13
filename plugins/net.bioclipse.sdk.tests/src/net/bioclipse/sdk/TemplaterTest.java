@@ -18,7 +18,7 @@ public class TemplaterTest {
         t.generate("bar");
     }
 
-    @Test(expected=IllegalArgumentException.class)
+    @Test()
     public void generateWithNonexistentKey() {
         Templater t = new Templater("foo");
         t.generate("noSuchKey", "value");

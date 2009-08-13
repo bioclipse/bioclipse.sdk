@@ -62,10 +62,6 @@ public class Templater {
         for (int i = 0; i < parameters.length; i += 2) {
             String key = parameters[i];
 
-            if (!keyFoundInTemplate(key))
-                throw new IllegalArgumentException("No such key in template: "
-                                                   + key);
-
             if (uniqKeys.contains(key))
                 throw new IllegalArgumentException(
                     "Duplicate key in template: " + key
@@ -81,9 +77,5 @@ public class Templater {
         }
 
         return result;
-    }
-
-    private boolean keyFoundInTemplate(String key) {
-        return template.contains("${" + key + "}");
     }
 }
