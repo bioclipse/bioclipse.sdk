@@ -11,8 +11,29 @@ New Project Wizard:
 
 * http://help.eclipse.org/ganymede/index.jsp?topic=/org.eclipse.jdt.doc.isv/guide/jdt_api_wizards.htm
 
+Requirements
+------------
+
+* Eclipse 3.4.2
+* the JDT plugin
+* the PDE plugin
+
 How to test the Plugin
 ----------------------
 
 1. open the net.bioclipse.sdk/plugin.xml
 2. click the link 'Launch an Eclipse application'
+
+How to build the Update Site
+----------------------------
+
+1. open the net.bioclipse.sdk_updateSite/site.xml
+2. run 'Build All'
+
+How to install the plugin
+-------------------------
+
+1. in Eclipse, do: Help -> Software Updates
+2. choose the tab 'Available Software' and click the 'Add site...' button
+3. pick 'Local...' and select the net.bioclipse.sdk_updateSite/ folder
+
