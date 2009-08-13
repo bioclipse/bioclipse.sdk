@@ -75,7 +75,7 @@ public class ManagerDataInputPage extends WizardPage implements Listener{
 		gd.horizontalSpan = numColumns -1;
 		managerName.setLayoutData(gd);
 
-		new Label(composite,SWT.NONE).setText("package:");
+		new Label(composite,SWT.NONE).setText("Package:");
 		packageName = new Text(composite,SWT.BORDER);
 		packageName.addListener(SWT.Modify, this);
 		gd = new GridData(GridData.FILL_HORIZONTAL);
