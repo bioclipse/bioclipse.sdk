@@ -2,7 +2,7 @@
 <feature
       id="net.bioclipse.sdk_feature"
       label="Bioclipse SDK Feature"
-      version="1.0.0.v20090813"
+      version="1.0.1.v20090814"
       provider-name="The Bioclipse Team"
       plugin="net.bioclipse.sdk">
 
