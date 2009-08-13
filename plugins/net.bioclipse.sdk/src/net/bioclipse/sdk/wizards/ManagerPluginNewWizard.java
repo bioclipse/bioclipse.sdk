@@ -13,6 +13,10 @@ package net.bioclipse.sdk.wizards;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
+import java.util.List;
+
+import net.bioclipse.sdk.templating.Templater;
 
 import org.eclipse.core.resources.ICommand;
 import org.eclipse.core.resources.IContainer;
@@ -115,18 +119,51 @@ public class ManagerPluginNewWizard extends Wizard implements INewWizard {
         monitor.subTask("Creating files");
         IPath qsarPath = projectPath.append("plugin.xml");
         IFile qsarFile = root.getFile(qsarPath);
-        ByteArrayInputStream bos = new ByteArrayInputStream("".getBytes());
+
+        String managerName = "foo"; // FIXME: use wizard page
+        String packageName = "net.bioclipse.foo"; // FIXME: use wizard page
+
+        // spring/context.xml
+        Templater context = new Templater(
+            this.getClass().getClassLoader().getResourceAsStream(
+                "templates/META-INF/spring/content.xml"
+            )
+        );
+        String fileContent = context.generate(
+            "managerName", managerName,
+            "packageName", packageName
+        );
+        createFile(monitor, qsarFile, fileContent);
+    }
+
+    private void createFile(IProgressMonitor monitor, IFile qsarFile, String foo)
+            throws CoreException, IOException {
+        ByteArrayInputStream bos = new ByteArrayInputStream(foo.getBytes());
         qsarFile.create(bos, true, new SubProgressMonitor(monitor,10));
         bos.close();
     }
 
     private IPath createFolders(IProgressMonitor monitor, IWorkspaceRoot root,
             IProject project) {
-        IPath projectPath = project.getFullPath(),
-        molPath = projectPath.append("src");
-        IFolder molFolder = root.getFolder(molPath);
-        createFolderHelper(molFolder, monitor);
-        monitor.worked(10);
+        String[] defaultFolders = {
+            "src",
+            "META-INF/spring"
+        };
+        IProgressMonitor subMonitor = new SubProgressMonitor(
+            monitor, defaultFolders.length
+        );
+        IPath projectPath = project.getFullPath();
+        for (String folder : defaultFolders) {
+            IPath path = projectPath.append(folder);
+            IFolder molFolder = root.getFolder(path);
+            createFolderHelper(molFolder, monitor);
+            subMonitor.worked(1);
+        }
+        String packageName = "net.bioclipse.foo"; // FIXME: use wizard page
+        IPath path = projectPath.append("src").append(packageName);
+        createFolderHelper(root.getFolder(path), monitor);
+        IPath bussinesPath = path.append("business");
+        createFolderHelper(root.getFolder(bussinesPath), monitor);
         return projectPath;
     }
 
