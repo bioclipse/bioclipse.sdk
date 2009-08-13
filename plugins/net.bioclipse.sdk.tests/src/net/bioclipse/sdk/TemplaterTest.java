@@ -41,4 +41,10 @@ public class TemplaterTest {
         Templater t = new Templater("foo${key1}${key1}bar");
         assertEquals("foo!!bar", t.generate("key1", "!"));
     }
+
+    @Test(expected=IllegalArgumentException.class)
+    public void substitutionWithoutCorrespondingKey() {
+        Templater t = new Templater("foo${key1}bar");
+        t.generate();
+    }
 }

@@ -17,6 +17,8 @@ import java.io.Reader;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Templater {
     String template;
@@ -75,6 +77,11 @@ public class Templater {
                    value = parameters[i+1];
             result = result.replace("${" + key + "}", value);
         }
+
+        Matcher m = Pattern.compile("\\$\\{([^}]*)\\}").matcher(result);
+        if (m.find())
+            throw new IllegalArgumentException("Substitution without key: "
+                                               + m.group(1));
 
         return result;
     }
