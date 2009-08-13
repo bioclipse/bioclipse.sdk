@@ -30,9 +30,14 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.SubProgressMonitor;
+import org.eclipse.jdt.core.IClasspathEntry;
+import org.eclipse.jdt.core.IJavaProject;
+import org.eclipse.jdt.core.JavaCore;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.jface.wizard.Wizard;
+import org.eclipse.pde.internal.core.ClasspathComputer;
+import org.eclipse.pde.internal.core.ExecutionEnvironmentAnalyzer;
 import org.eclipse.ui.INewWizard;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.actions.WorkspaceModifyOperation;
@@ -114,7 +119,6 @@ public class ManagerPluginNewWizard extends Wizard implements INewWizard {
             monitor.subTask("Creating directories");
             IProject project = root.getProject(fFirstPage.getProjectName());
             addNaturesAndBuilders(monitor, project);
-            project.open(monitor);
             IPath projectPath = createFolders(monitor, root, project);
             createFiles(monitor, root, projectPath);
         } catch(CoreException x) {
@@ -278,7 +282,26 @@ public class ManagerPluginNewWizard extends Wizard implements INewWizard {
             mfBuilder
         });
         project.create(description, monitor);
+        project.open(monitor);
+        IJavaProject javaProject = JavaCore.create(project);
+        IClasspathEntry[] entries = getClassPathEntries(javaProject);
+        javaProject.setRawClasspath(entries, null);
         monitor.worked(10);
+    }
+
+    private IClasspathEntry[] getClassPathEntries(IJavaProject project) {
+        IClasspathEntry[] entries = new IClasspathEntry[3];
+        String executionEnvironment = null;
+        ClasspathComputer.setComplianceOptions(
+            project,
+            ExecutionEnvironmentAnalyzer.getCompliance(executionEnvironment)
+        );
+        entries[0] = ClasspathComputer.createJREEntry(executionEnvironment);
+        entries[1] = ClasspathComputer.createContainerEntry();
+        IPath path = project.getProject().getFullPath().append("src/");
+        entries[2] = JavaCore.newSourceEntry(path);
+
+        return entries;
     }
 
     private void createFolderHelper (IFolder folder, IProgressMonitor monitor) {
