@@ -14,3 +14,10 @@ New Project Wizard:
 How to test the Plugin:
 
 * http://www.eclipse.org/articles/Article-Your%20First%20Plug-in/YourFirstPlugin.html (see Step 7)
+
+* However that instruction seems to be for an old Eclipse verson. Basically
+  what you do is (it's probably easiest to do this in a seperate workspace from
+  your Bioclipse devlopment) open the Run configurations dialog and create a
+  new Eclipse application run configuration. All settings should be correct
+  from the beginning and when you run you should get a new Eclipse window with
+  our plugin running.
