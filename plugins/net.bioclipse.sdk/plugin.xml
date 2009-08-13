@@ -10,7 +10,7 @@
       </category>
       <wizard
             name="New Manager Plugin Wizard"
-            icon="icons/sample.gif"
+            icon="icons/logo.gif"
             category="net.bioclipse.sdk.newmanagerplugin"
             class="net.bioclipse.sdk.wizards.ManagerPluginNewWizard"
             id="net.bioclipse.sdk.wizards.ManagerPluginNewWizard">
