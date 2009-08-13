@@ -133,6 +133,35 @@ public class ManagerPluginNewWizard extends Wizard implements INewWizard {
             "packageName", packageName
         );
         createFile(monitor, file, fileContent);
+
+        // create the Java source files
+        String[] sourceFiles = {
+            "IJavaManager.java",
+            "IJavaScriptManager.java",
+            "IManager.java",
+            "Manager.java",
+            "ManagerFactory.java"
+        };
+        IPath businessPath = projectPath.append("src").
+            append(packageName).append("business");
+        for (String sourceFile : sourceFiles) {
+            String targetFile = sourceFile.replace(
+                "Manager", managerName
+            );
+            file = root.getFile(path);
+            context = new Templater(
+                this.getClass().getClassLoader().getResourceAsStream(
+                    "src/templates/src/" + sourceFile
+                )
+            );
+            fileContent = context.generate(
+                "managerName", managerName,
+                "packageName", packageName
+            );
+            path = businessPath.append(targetFile);
+            file = root.getFile(path);
+            createFile(monitor, file, fileContent);
+        }
     }
 
     private void createFile(IProgressMonitor monitor, IFile qsarFile, String foo)
