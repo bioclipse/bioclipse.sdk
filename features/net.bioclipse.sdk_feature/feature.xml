@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="net.bioclipse.sdk_feature"
+      label="Bioclipse SDK Feature"
+      version="2.0.1.v20090807"
+      provider-name="The Bioclipse Team"
+      plugin="net.bioclipse.sdk">
+
+   <description url="http://wiki.bioclipse.net">
+      The Bioclipse Software Development Kit, including developers
+      documentation.
+   </description>
+
+   <copyright>
+      (C) 2005-2009 The Bioclipse Project contributors.
+   </copyright>
+
+   <license url="http://www.eclipse.org/org/documents/epl-v10.php">
+      This feature and the accompanying materials are made available
+under the terms of the Eclipse Public License v1.0 + exception,
+putting no constraints on choice of backend and/or license for
+creating plugins for Bioclipse; it is totally open for both open
+source plugins as well as commercial. The exception allows GPL
+plugins to be written and run in any combination with EPL licensed
+plugins, addressing incompatibility between the EPL and the GPL
+v.2.
+The Eclipse Public License accompanies this distribution, and
+is available at http://www.eclipse.org/legal/epl-v10.html
+   </license>
+
+   <url>
+      <update label="Bioclipse Update site" url="http://update2.bioclipse.net"/>
+   </url>
+
+   <requires>
+      <import feature="org.eclipse.jdt" version="3.4.2.r342_v20081217-7o7tEAoEEDWEm5HTrKn-svO4BbDI"/>
+      <import feature="org.eclipse.pde" version="3.4.2.R342_v20090122-7T7U1E9imVKz-A8Vz-p_jRS"/>
+      <import feature="org.eclipse.platform" version="3.4.2.R342_v20090122-9I96EiWElHi8lheoJKJIvhM3JfVsYbRrgVIWL"/>
+   </requires>
+
+   <plugin
+         id="net.bioclipse.sdk"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+</feature>
