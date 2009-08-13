@@ -18,26 +18,22 @@ import static org.junit.Assert.assertEquals;
 public class TemplaterTest {
     @Test
     public void templateWithoutSubstitutions() {
-        Templater t = new Templater("foo");
-        assertEquals("foo", t.generate());
+        assertEquals("foo", new Templater("foo").generate());
     }
 
     @Test(expected=IllegalArgumentException.class)
     public void generateWithOddNumberOfKeys() {
-        Templater t = new Templater("foo");
-        t.generate("bar");
+        new Templater("foo").generate("bar");
     }
 
     @Test()
     public void generateWithNonexistentKey() {
-        Templater t = new Templater("foo");
-        t.generate("noSuchKey", "value");
+        new Templater("foo").generate("noSuchKey", "value");
     }
 
     @Test(expected=IllegalArgumentException.class)
     public void generateWithDuplicateKeys() {
-        Templater t = new Templater("foo");
-        t.generate("key1", "foo", "key1", "bar");
+        new Templater("foo").generate("key1", "foo", "key1", "bar");
     }
 
     @Test()
@@ -54,7 +50,6 @@ public class TemplaterTest {
 
     @Test(expected=IllegalArgumentException.class)
     public void substitutionWithoutCorrespondingKey() {
-        Templater t = new Templater("foo${key1}bar");
-        t.generate();
+        new Templater("foo${key1}bar").generate();
     }
 }
