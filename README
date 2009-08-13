@@ -3,3 +3,7 @@ Bioclipse Software Development Kit
 
 This Git repository holds the plugins for Eclipse (not Bioclipse) to help people
 development new plugins for Bioclipse.
+
+Reading material:
+
+* http://help.eclipse.org/ganymede/index.jsp?topic=/org.eclipse.jdt.doc.isv/guide/jdt_api_wizards.htm
