@@ -120,9 +120,11 @@ public class ManagerDataInputPage extends WizardPage implements Listener{
 		case IStatus.WARNING:
 			setMessage(message, WizardPage.WARNING);
 			setErrorMessage(null);
+			break;
 		case IStatus.INFO:
 			setMessage(message,WizardPage.INFORMATION);
 			setErrorMessage(null);
+			break;
 		default:
 			setMessage(null);
 			setErrorMessage(message);
