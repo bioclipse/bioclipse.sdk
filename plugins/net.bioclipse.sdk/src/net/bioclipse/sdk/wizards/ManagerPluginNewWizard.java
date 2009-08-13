@@ -94,50 +94,13 @@ public class ManagerPluginNewWizard extends Wizard implements INewWizard {
     protected void createProject(IProgressMonitor monitor) {
         monitor.beginTask("Creating the " + TITLE, 50);
         try {
-            //Get WS root
             IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
             monitor.subTask("Creating directories");
-
-            //Create the project
             IProject project = root.getProject(fFirstPage.getProjectName());
-
-            //Add natures and builders
-            IProjectDescription description = ResourcesPlugin.getWorkspace().
-                newProjectDescription(project.getName());
-            if(!Platform.getLocation().equals(fFirstPage.getLocationPath()))
-                description.setLocation(fFirstPage.getLocationPath());
-            description.setNatureIds(new String[] {
-                "org.eclipse.pde.PluginNature",
-                "org.eclipse.jdt.core.javanature"
-            });
-            ICommand javaBuilder = description.newCommand();
-            javaBuilder.setBuilderName("org.eclipse.jdt.core.javabuilder");
-            ICommand mfBuilder = description.newCommand();
-            mfBuilder.setBuilderName("org.eclipse.pde.ManifestBuilder");
-            description.setBuildSpec(new ICommand[] {
-                javaBuilder,
-                mfBuilder
-            });
-            project.create(description, monitor);
-            monitor.worked(10);
-
-            //Open project
+            addNaturesAndBuilders(monitor, project);
             project.open(monitor);
-
-            //Create folders
-            IPath projectPath = project.getFullPath(),
-            molPath = projectPath.append("src");
-            IFolder molFolder = root.getFolder(molPath);
-            createFolderHelper(molFolder, monitor);
-            monitor.worked(10);
-
-            //Create files (qsar.xml)
-            monitor.subTask("Creating files");
-            IPath qsarPath = projectPath.append("plugin.xml");
-            IFile qsarFile = root.getFile(qsarPath);
-            ByteArrayInputStream bos = new ByteArrayInputStream("".getBytes());
-            qsarFile.create(bos, true, new SubProgressMonitor(monitor,10));
-            bos.close();
+            IPath projectPath = createFolders(monitor, root, project);
+            createFiles(monitor, root, projectPath);
         } catch(CoreException x) {
             x.printStackTrace();
         } catch (IOException e) {
@@ -145,6 +108,48 @@ public class ManagerPluginNewWizard extends Wizard implements INewWizard {
         } finally {
             monitor.done();
         }
+    }
+
+    private void createFiles(IProgressMonitor monitor, IWorkspaceRoot root,
+            IPath projectPath) throws CoreException, IOException {
+        monitor.subTask("Creating files");
+        IPath qsarPath = projectPath.append("plugin.xml");
+        IFile qsarFile = root.getFile(qsarPath);
+        ByteArrayInputStream bos = new ByteArrayInputStream("".getBytes());
+        qsarFile.create(bos, true, new SubProgressMonitor(monitor,10));
+        bos.close();
+    }
+
+    private IPath createFolders(IProgressMonitor monitor, IWorkspaceRoot root,
+            IProject project) {
+        IPath projectPath = project.getFullPath(),
+        molPath = projectPath.append("src");
+        IFolder molFolder = root.getFolder(molPath);
+        createFolderHelper(molFolder, monitor);
+        monitor.worked(10);
+        return projectPath;
+    }
+
+    private void addNaturesAndBuilders(IProgressMonitor monitor,
+            IProject project) throws CoreException {
+        IProjectDescription description = ResourcesPlugin.getWorkspace().
+            newProjectDescription(project.getName());
+        if(!Platform.getLocation().equals(fFirstPage.getLocationPath()))
+            description.setLocation(fFirstPage.getLocationPath());
+        description.setNatureIds(new String[] {
+            "org.eclipse.pde.PluginNature",
+            "org.eclipse.jdt.core.javanature"
+        });
+        ICommand javaBuilder = description.newCommand();
+        javaBuilder.setBuilderName("org.eclipse.jdt.core.javabuilder");
+        ICommand mfBuilder = description.newCommand();
+        mfBuilder.setBuilderName("org.eclipse.pde.ManifestBuilder");
+        description.setBuildSpec(new ICommand[] {
+            javaBuilder,
+            mfBuilder
+        });
+        project.create(description, monitor);
+        monitor.worked(10);
     }
 
     private void createFolderHelper (IFolder folder, IProgressMonitor monitor) {
