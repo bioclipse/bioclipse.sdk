@@ -130,9 +130,10 @@ public class ManagerPluginNewWizard extends Wizard implements INewWizard {
             IPath projectPath) throws CoreException, IOException {
         monitor.subTask("Creating files");
 
-        String managerName = "foo"; // FIXME: use wizard page
+        String managerName = "FooManager"; // FIXME: use wizard page
         String packageName = "net.bioclipse.foo"; // FIXME: use wizard page
         String bundleName = packageName;
+        String pluginName = packageName;
 
         // META-INF/MANIFEST.MF
         IPath path = projectPath.append("META-INF").
@@ -145,7 +146,8 @@ public class ManagerPluginNewWizard extends Wizard implements INewWizard {
         );
         String fileContent = context.generate(
             "packageName", packageName,
-            "bundleName", bundleName
+            "bundleName", bundleName,
+            "pluginName", pluginName
         );
         createFile(monitor, file, fileContent);
 
@@ -178,6 +180,23 @@ public class ManagerPluginNewWizard extends Wizard implements INewWizard {
         );
         createFile(monitor, file, fileContent);
 
+        // Activator.java
+        IPath javaPkgPath = projectPath.append("src");
+        for (String part : packageName.split("\\."))
+            javaPkgPath = javaPkgPath.append(part);
+        path = javaPkgPath.append("Activator.java");
+        file = root.getFile(path);
+        context = new Templater(
+            this.getClass().getClassLoader().getResourceAsStream(
+                "templates/src/Activator.java"
+            )
+        );
+        fileContent = context.generate(
+            "managerName", managerName,
+            "packageName", packageName
+        );
+        createFile(monitor, file, fileContent);
+
         // create the Java source files
         String[] sourceFiles = {
             "IJavaManager.java",
@@ -186,8 +205,7 @@ public class ManagerPluginNewWizard extends Wizard implements INewWizard {
             "Manager.java",
             "ManagerFactory.java"
         };
-        IPath businessPath = projectPath.append("src").
-            append(packageName).append("business");
+        IPath businessPath = javaPkgPath.append("business");
         for (String sourceFile : sourceFiles) {
             String targetFile = sourceFile.replace(
                 "Manager", managerName
@@ -232,7 +250,9 @@ public class ManagerPluginNewWizard extends Wizard implements INewWizard {
             subMonitor.worked(1);
         }
         String packageName = "net.bioclipse.foo"; // FIXME: use wizard page
-        IPath path = projectPath.append("src").append(packageName);
+        IPath path = projectPath.append("src");
+        for (String part : packageName.split("\\."))
+            path = path.append(part);
         createFolderHelper(root.getFolder(path), monitor);
         IPath bussinesPath = path.append("business");
         createFolderHelper(root.getFolder(bussinesPath), monitor);
