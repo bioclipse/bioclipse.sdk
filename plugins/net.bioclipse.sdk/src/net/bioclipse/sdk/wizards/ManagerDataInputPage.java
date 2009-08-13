@@ -9,7 +9,7 @@
  ******************************************************************************/
 package net.bioclipse.sdk.wizards;
 
-import static net.bioclipse.sdk.Activator.PLUGIN_ID;
+import net.bioclipse.sdk.Activator;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
@@ -94,7 +94,6 @@ public class ManagerDataInputPage extends WizardPage implements Listener{
 		setControl(composite);
 	}
 
-	@Override
 	public boolean canFlipToNextPage() {
 		if(getErrorMessage() != null ) return false;
 		if( isTextNonEmpty(managerName) &&
@@ -140,11 +139,11 @@ public class ManagerDataInputPage extends WizardPage implements Listener{
 	     if ((event.widget == managerName)) {
 			String mName = managerName.getText();
 			if(mName.length()<=0) {
-				status = new Status(IStatus.INFO,PLUGIN_ID,
+				status = new Status(IStatus.INFO, Activator.PLUGIN_ID,
 							"Manager name must be specified",null);
 			}
 			if(mName.contains(" "))
-				status = new Status(IStatus.ERROR, PLUGIN_ID,
+				status = new Status(IStatus.ERROR, Activator.PLUGIN_ID,
 						"Manager name should not container spaces",null);
 
 			if(!namespaceChanged) {
@@ -156,7 +155,7 @@ public class ManagerDataInputPage extends WizardPage implements Listener{
 	     if(event.widget == namespace) {
 	    	 if(!namespaceChanged) namespaceChanged = true;
 	    	 if(namespace.getText().contains(" ")) {
-	    		 status = new Status( IStatus.WARNING,PLUGIN_ID,
+	    		 status = new Status( IStatus.WARNING, Activator.PLUGIN_ID,
 	    				 "Namespace not contain spaces",null);
 	    	 }
 	    	 namespaceStatus = status;
@@ -177,7 +176,7 @@ public class ManagerDataInputPage extends WizardPage implements Listener{
 		if(initialPluginName!=null) {
 			int lastIndex = initialPluginName.lastIndexOf('.');
 			String mName = initialPluginName.substring(lastIndex+1);
-			Character ch = mName.charAt(0);
+			char ch = mName.charAt(0);
 			StringBuilder n = new StringBuilder( mName.substring(1));
 			n.insert(0, Character.toUpperCase(ch)).append("Manager");
 			managerName.setText(n.toString());
