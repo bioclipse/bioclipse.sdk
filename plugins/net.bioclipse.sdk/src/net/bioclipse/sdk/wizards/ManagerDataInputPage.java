@@ -135,20 +135,20 @@ public class ManagerDataInputPage extends WizardPage implements Listener{
 
 	     if ((event.widget == managerName)) {
 			String mName = managerName.getText();
+			if(mName.length()<=0) {
+				status = new Status(IStatus.INFO,PLUGIN_ID,
+							"Manager name must be specified",null);
+			}
 			if(mName.contains(" "))
 				status = new Status(IStatus.ERROR, PLUGIN_ID,
 						"Manager name should not container spaces",null);
-			if (mName.toLowerCase().endsWith("manager")) {
-				status = new Status(IStatus.ERROR, "not_used", 0,
-						"Manager name should not end with manager", null);
-			}
 
 			managerNameStatus = status;
 		}
 	     if(event.widget == namespace) {
-	    	 if(namespace.getText().length()>10) {
+	    	 if(namespace.getText().contains(" ")) {
 	    		 status = new Status( IStatus.WARNING,PLUGIN_ID,
-	    				 "Namespace should be kept short",null);
+	    				 "Namespace not contain spaces",null);
 	    	 }
 	    	 namespaceStatus = status;
 	     }
