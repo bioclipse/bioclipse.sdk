@@ -126,7 +126,7 @@ public class ManagerPluginNewWizard extends Wizard implements INewWizard {
         IFile file = root.getFile(path);
         Templater context = new Templater(
             this.getClass().getClassLoader().getResourceAsStream(
-                "src/templates/META-INF/MANIFEST.MF"
+                "templates/META-INF/MANIFEST.MF"
             )
         );
         String fileContent = context.generate(
@@ -141,7 +141,7 @@ public class ManagerPluginNewWizard extends Wizard implements INewWizard {
         file = root.getFile(path);
         context = new Templater(
             this.getClass().getClassLoader().getResourceAsStream(
-                "src/templates/META-INF/spring/context.xml"
+                "templates/META-INF/spring/context.xml"
             )
         );
         fileContent = context.generate(
@@ -155,7 +155,7 @@ public class ManagerPluginNewWizard extends Wizard implements INewWizard {
         file = root.getFile(path);
         context = new Templater(
             this.getClass().getClassLoader().getResourceAsStream(
-                "src/templates/plugin.xml"
+                "templates/plugin.xml"
             )
         );
         fileContent = context.generate(
@@ -181,7 +181,7 @@ public class ManagerPluginNewWizard extends Wizard implements INewWizard {
             file = root.getFile(path);
             context = new Templater(
                 this.getClass().getClassLoader().getResourceAsStream(
-                    "src/templates/src/" + sourceFile
+                    "templates/src/" + sourceFile
                 )
             );
             fileContent = context.generate(
