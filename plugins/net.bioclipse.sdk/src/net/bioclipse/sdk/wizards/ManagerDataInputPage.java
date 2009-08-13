@@ -38,7 +38,9 @@ public class ManagerDataInputPage extends WizardPage implements Listener{
 	Status namespaceStatus = noError();
 	Status packageNameStatus = noError();
 
-	String initialName = null;
+	boolean namespaceChanged = false;
+
+	String initialPluginName = null;
 
 	public ManagerDataInputPage() {
 		this("Manager data","Input manager info",null);
@@ -82,7 +84,7 @@ public class ManagerDataInputPage extends WizardPage implements Listener{
 
 		new Label(composite,SWT.NONE).setText("Manager namespace:");
 		namespace = new Text(composite,SWT.BORDER);
-		managerName.addListener(SWT.Modify, this);
+		managerName.addListener(SWT.KeyUp, this);
 		gd = new GridData(GridData.FILL_HORIZONTAL);
 		gd.horizontalSpan = numColumns -1;
 		namespace.setLayoutData(gd);
@@ -145,9 +147,14 @@ public class ManagerDataInputPage extends WizardPage implements Listener{
 				status = new Status(IStatus.ERROR, PLUGIN_ID,
 						"Manager name should not container spaces",null);
 
+			if(!namespaceChanged) {
+				int end = mName.lastIndexOf("Manager");
+				namespace.setText(firstToLower(mName).substring(0,end));
+			}
 			managerNameStatus = status;
 		}
 	     if(event.widget == namespace) {
+	    	 if(!namespaceChanged) namespaceChanged = true;
 	    	 if(namespace.getText().contains(" ")) {
 	    		 status = new Status( IStatus.WARNING,PLUGIN_ID,
 	    				 "Namespace not contain spaces",null);
@@ -167,10 +174,16 @@ public class ManagerDataInputPage extends WizardPage implements Listener{
 	}
 
 	private void updateManagerName() {
-		if(initialName!=null) {
-			Character ch = initialName.charAt(0);
-			StringBuilder n = new StringBuilder( initialName.substring(1));
+		if(initialPluginName!=null) {
+			int lastIndex = initialPluginName.lastIndexOf('.');
+			String mName = initialPluginName.substring(lastIndex+1);
+			Character ch = mName.charAt(0);
+			StringBuilder n = new StringBuilder( mName.substring(1));
 			n.insert(0, Character.toUpperCase(ch)).append("Manager");
+			if(managerName.getText().length()==0)
+				managerName.setText(n.toString());
+			if(packageName.getText().length()==0)
+				packageName.setText(initialPluginName+".business");
 		}
 
 	}
@@ -181,8 +194,9 @@ public class ManagerDataInputPage extends WizardPage implements Listener{
 		return n.toString();
 	}
 
-	public void setInitialManagerName(String managerName) {
-		initialName = managerName;
+	public void setPluginName(String pluginName) {
+		initialPluginName = pluginName;
+		updateManagerName();
 	}
 
 	public String getManager() { return managerName.getText();}
