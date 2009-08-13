@@ -31,6 +31,7 @@ import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.SubProgressMonitor;
 import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.ui.INewWizard;
 import org.eclipse.ui.IWorkbench;
@@ -63,6 +64,16 @@ public class ManagerPluginNewWizard extends Wizard implements INewWizard {
         fFirstPage.setDescription("Create a " + TITLE);
         addPage(fFirstPage);
         addPage(dataInputPage= new ManagerDataInputPage());
+    }
+
+    @Override
+    public IWizardPage getNextPage(IWizardPage page) {
+    	IWizardPage pg=  super.getNextPage(page);
+    	if(pg instanceof ManagerDataInputPage) {
+    		if(fFirstPage.getProjectName()!=null)
+    			((ManagerDataInputPage)pg).setPluginName(fFirstPage.getProjectName());
+    	}
+    	return pg;
     }
 
     @Override
