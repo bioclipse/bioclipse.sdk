@@ -134,8 +134,8 @@ public class ManagerPluginNewWizard extends Wizard implements INewWizard {
             IPath projectPath) throws CoreException, IOException {
         monitor.subTask("Creating files");
 
-        String managerName = "FooManager"; // FIXME: use wizard page
-        String packageName = "net.bioclipse.foo"; // FIXME: use wizard page
+        String managerName = this.dataInputPage.getManager();
+        String packageName = this.dataInputPage.getPackage();
         String bundleName = packageName;
         String pluginName = packageName;
 
@@ -253,7 +253,7 @@ public class ManagerPluginNewWizard extends Wizard implements INewWizard {
             createFolderHelper(molFolder, monitor);
             subMonitor.worked(1);
         }
-        String packageName = "net.bioclipse.foo"; // FIXME: use wizard page
+        String packageName = this.dataInputPage.getPackage();
         IPath path = projectPath.append("src");
         for (String part : packageName.split("\\."))
             path = path.append(part);
