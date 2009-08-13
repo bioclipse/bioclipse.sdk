@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:osgi="http://www.springframework.org/schema/osgi"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
                            http://www.springframework.org/schema/osgi http://www.springframework.org/schema/osgi/spring-osgi.xsd">
 
-  <osgi:service id="java${managerName}OSGI" 
+  <osgi:service id="java${managerName}OSGI"
                 ref="java${managerName}"
                 interface="${packageName}.IJava${managerName}" />
 
@@ -20,8 +20,8 @@
   <osgi:reference id="javaManagerDispatcherAdvisor"
                   interface="net.bioclipse.managers.business.IJavaManagerDispatcherAdvisor" />
 
-  <osgi:reference id="javaScriptManagerDispatcherAdvisor" 
-                  interface="net.bioclipse.managers.business.IJavaScriptManagerDispatcherAdvisor"/>
+  <osgi:reference id="javaScriptManagerDispatcherAdvisor"
+                  interface="net.bioclipse.managers.business.IJavaScriptManagerDispatcherAdvisor" />
 
   <osgi:reference id="wrapInProxyAdvice"
                   interface="net.bioclipse.recording.IWrapInProxyAdvice" />
@@ -32,15 +32,15 @@
         <property name="pattern" value=".*" /> <!-- See also class implementation -->
   </bean>
 
-  <bean id="${managerName}Target" 
+  <bean id="${managerName}Target"
         class="${packageName}.${managerName}">
   </bean>
-  
+
   <bean id="javaScript${managerName}"
         class="org.springframework.aop.framework.ProxyFactoryBean">
-    <property name="target" 
+    <property name="target"
               ref="${managerName}Target" />
-    <property name="proxyInterfaces" 
+    <property name="proxyInterfaces"
               value="${packageName}.I${managerName}" />
     <property name="interceptorNames" >
         <list>
@@ -48,14 +48,14 @@
             <value>wrapInProxyAdvice</value>
             <value>javaScriptManagerDispatcherAdvisor</value>
         </list>
-    </property>    
+    </property>
   </bean>
 
   <bean id="java${managerName}"
         class="org.springframework.aop.framework.ProxyFactoryBean">
-    <property name="target" 
+    <property name="target"
               ref="${managerName}Target" />
-    <property name="proxyInterfaces" 
+    <property name="proxyInterfaces"
               value="${packageName}.I${managerName}" />
     <property name="interceptorNames" >
         <list>
@@ -63,6 +63,6 @@
                 <value>wrapInProxyAdvice</value>
                 <value>javaManagerDispatcherAdvisor</value>
         </list>
-    </property>    
-  </bean>  
+    </property>
+  </bean>
 </beans>
