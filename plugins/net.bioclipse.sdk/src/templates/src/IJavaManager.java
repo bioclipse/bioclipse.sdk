@@ -8,7 +8,7 @@
  *
  * Contact: Bioclipse Project <http://www.bioclipse.net>
  ******************************************************************************/
-package ${packageName};
+package ${packageName}.business;
 
 public interface IJava${managerName} extends I${managerName} {
 

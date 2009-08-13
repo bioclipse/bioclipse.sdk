@@ -8,7 +8,7 @@
  *
  * Contact: http://www.bioclipse.net/
  ******************************************************************************/
-package ${packageName};
+package ${packageName}.business;
 
 public class ${managerName} implements IBioclipseManager {
 

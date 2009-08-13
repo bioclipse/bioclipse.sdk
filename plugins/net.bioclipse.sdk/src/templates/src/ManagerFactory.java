@@ -9,7 +9,7 @@
 * Contact: http://www.bioclipse.net/
 ******************************************************************************/
 
-package ${packageName};
+package ${packageName}.business;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
