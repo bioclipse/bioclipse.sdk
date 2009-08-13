@@ -19,7 +19,6 @@ public class ${managerName} implements IBioclipseManager {
      * scripting.
      */
     public String getManagerName() {
-        //TODO: change to a short one word name for the manager
-        return "myNewManager";
+        return ${managerNamespace};
     }
 }

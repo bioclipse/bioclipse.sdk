@@ -136,6 +136,7 @@ public class ManagerPluginNewWizard extends Wizard implements INewWizard {
 
         String managerName = this.dataInputPage.getManager();
         String packageName = this.dataInputPage.getPackage();
+        String managerNamespace = this.dataInputPage.getNamespace();
         String bundleName = packageName;
         String pluginName = packageName;
 
@@ -222,7 +223,8 @@ public class ManagerPluginNewWizard extends Wizard implements INewWizard {
             );
             fileContent = context.generate(
                 "managerName", managerName,
-                "packageName", packageName
+                "packageName", packageName,
+                "managerNamespace", managerNamespace
             );
             path = businessPath.append(targetFile);
             file = root.getFile(path);
