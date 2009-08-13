@@ -13,8 +13,6 @@ package net.bioclipse.sdk.wizards;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
-import java.util.ArrayList;
-import java.util.List;
 
 import net.bioclipse.sdk.templating.Templater;
 
@@ -117,13 +115,14 @@ public class ManagerPluginNewWizard extends Wizard implements INewWizard {
     private void createFiles(IProgressMonitor monitor, IWorkspaceRoot root,
             IPath projectPath) throws CoreException, IOException {
         monitor.subTask("Creating files");
-        IPath qsarPath = projectPath.append("plugin.xml");
-        IFile qsarFile = root.getFile(qsarPath);
 
         String managerName = "foo"; // FIXME: use wizard page
         String packageName = "net.bioclipse.foo"; // FIXME: use wizard page
 
         // spring/context.xml
+        IPath path = projectPath.append("META-INF").append("spring").
+            append("context.xml");
+        IFile file = root.getFile(path);
         Templater context = new Templater(
             this.getClass().getClassLoader().getResourceAsStream(
                 "src/templates/META-INF/spring/context.xml"
@@ -133,7 +132,7 @@ public class ManagerPluginNewWizard extends Wizard implements INewWizard {
             "managerName", managerName,
             "packageName", packageName
         );
-        createFile(monitor, qsarFile, fileContent);
+        createFile(monitor, file, fileContent);
     }
 
     private void createFile(IProgressMonitor monitor, IFile qsarFile, String foo)
