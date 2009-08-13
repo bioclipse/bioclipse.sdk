@@ -185,6 +185,17 @@ public class ManagerPluginNewWizard extends Wizard implements INewWizard {
         );
         createFile(monitor, file, fileContent);
 
+        // build.properties
+        path = projectPath.append("build.properties");
+        file = root.getFile(path);
+        context = new Templater(
+            this.getClass().getClassLoader().getResourceAsStream(
+                "templates/build.properties"
+            )
+        );
+        fileContent = context.generate(); // nothing to change
+        createFile(monitor, file, fileContent);
+
         // Activator.java
         IPath javaPkgPath = projectPath.append("src");
         for (String part : packageName.split("\\."))
