@@ -32,9 +32,13 @@ public class ManagerDataInputPage extends WizardPage implements Listener{
 
 	Text managerName;
 	Text namespace;
+	Text packageName;
 
 	Status managerNameStatus = noError();
 	Status namespaceStatus = noError();
+	Status packageNameStatus = noError();
+
+	String initialName = null;
 
 	public ManagerDataInputPage() {
 		this("Manager data","Input manager info",null);
@@ -64,27 +68,36 @@ public class ManagerDataInputPage extends WizardPage implements Listener{
 
 		new Label(composite,SWT.NONE).setText("Manager name:");
 		managerName = new Text(composite,SWT.BORDER);
-		managerName.addListener(SWT.KeyUp, this);
+		managerName.addListener(SWT.Modify, this);
 		GridData gd = new GridData(GridData.FILL_HORIZONTAL);
 		gd.horizontalSpan = numColumns -1;
 		managerName.setLayoutData(gd);
 
+		new Label(composite,SWT.NONE).setText("package:");
+		packageName = new Text(composite,SWT.BORDER);
+		packageName.addListener(SWT.Modify, this);
+		gd = new GridData(GridData.FILL_HORIZONTAL);
+		gd.horizontalSpan = numColumns -1;
+		packageName.setLayoutData(gd);
+
 		new Label(composite,SWT.NONE).setText("Manager namespace:");
 		namespace = new Text(composite,SWT.BORDER);
-		managerName.addListener(SWT.KeyUp, this);
+		managerName.addListener(SWT.Modify, this);
 		gd = new GridData(GridData.FILL_HORIZONTAL);
 		gd.horizontalSpan = numColumns -1;
 		namespace.setLayoutData(gd);
 
-		setControl(composite);
+		updateManagerName();
 
+		setControl(composite);
 	}
 
 	@Override
 	public boolean canFlipToNextPage() {
 		if(getErrorMessage() != null ) return false;
 		if( isTextNonEmpty(managerName) &&
-		    isTextNonEmpty(namespace))
+		    isTextNonEmpty(namespace) &&
+		    isTextNonEmpty(packageName))
 			return true;
 		else
 			return false;
@@ -129,6 +142,7 @@ public class ManagerDataInputPage extends WizardPage implements Listener{
 				status = new Status(IStatus.ERROR, "not_used", 0,
 						"Manager name should not end with manager", null);
 			}
+
 			managerNameStatus = status;
 		}
 	     if(event.widget == namespace) {
@@ -149,4 +163,27 @@ public class ManagerDataInputPage extends WizardPage implements Listener{
 		else
 			return managerNameStatus;
 	}
+
+	private void updateManagerName() {
+		if(initialName!=null) {
+			Character ch = initialName.charAt(0);
+			StringBuilder n = new StringBuilder( initialName.substring(1));
+			n.insert(0, Character.toUpperCase(ch)).append("Manager");
+		}
+
+	}
+
+	private String firstToLower(String s) {
+		StringBuilder n = new StringBuilder(s);
+		n.setCharAt(0, Character.toLowerCase(n.charAt(0)));
+		return n.toString();
+	}
+
+	public void setInitialManagerName(String managerName) {
+		initialName = managerName;
+	}
+
+	public String getManager() { return managerName.getText();}
+	public String getNamespace() { return namespace.getText();}
+	public String getPackage() { return packageName.getText();}
 }
