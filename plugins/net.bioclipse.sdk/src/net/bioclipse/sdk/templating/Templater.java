@@ -10,6 +10,12 @@
  ******************************************************************************/
 package net.bioclipse.sdk.templating;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.Reader;
+import java.io.StringWriter;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,6 +24,34 @@ public class Templater {
 
     public Templater(String template) {
         this.template = template;
+    }
+
+    public Templater(InputStream stream) {
+        this(readInputStreamIntoString(stream));
+    }
+
+    private static String readInputStreamIntoString(InputStream stream) {
+        final char[] buffer = new char[0x10000];
+        StringBuilder out = new StringBuilder();
+        Reader in;
+        try {
+            in = new InputStreamReader(stream, "UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            throw new RuntimeException(e);
+        }
+        int read;
+        try {
+            do {
+                    read = in.read(buffer, 0, buffer.length);
+                if (read>0) {
+                    out.append(buffer, 0, read);
+                }
+            }
+            while (read>=0);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        return out.toString();
     }
 
     public String generate(String... parameters) {
