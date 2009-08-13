@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <description url="http://sdk.update.bioclipse.net/">
+      Update site for the Bioclipse SDK.
+   </description>
+   <feature url="features/net.bioclipse.sdk_feature_2.0.1.v20090807.jar" id="net.bioclipse.sdk_feature" version="2.0.1.v20090807"/>
+</site>
