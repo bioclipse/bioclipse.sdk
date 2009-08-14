@@ -84,7 +84,7 @@ public class ManagerDataInputPage extends WizardPage implements Listener{
 
 		new Label(composite,SWT.NONE).setText("Manager namespace:");
 		namespace = new Text(composite,SWT.BORDER);
-		managerName.addListener(SWT.KeyUp, this);
+		namespace.addListener(SWT.KeyUp, this);
 		gd = new GridData(GridData.FILL_HORIZONTAL);
 		gd.horizontalSpan = numColumns -1;
 		namespace.setLayoutData(gd);
