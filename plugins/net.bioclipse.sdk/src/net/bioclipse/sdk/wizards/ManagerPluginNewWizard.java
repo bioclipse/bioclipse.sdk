@@ -48,9 +48,11 @@ import org.eclipse.ui.dialogs.WizardNewProjectCreationPage;
  */
 public class ManagerPluginNewWizard extends Wizard implements INewWizard {
 
+    private final static String TEMPLATE_FOLDER_FOO_MANAGER =
+        "templates/net.bioclipse.foo.business/";
+
     private WizardNewProjectCreationPage fFirstPage;
     private ManagerDataInputPage dataInputPage;
-
 
     private IWorkbench workbench;
     private IStructuredSelection selection;
@@ -146,7 +148,8 @@ public class ManagerPluginNewWizard extends Wizard implements INewWizard {
         IFile file = root.getFile(path);
         Templater context = new Templater(
             this.getClass().getClassLoader().getResourceAsStream(
-                "templates/META-INF/MANIFEST.MF"
+                    TEMPLATE_FOLDER_FOO_MANAGER +
+                    "META-INF/MANIFEST.MF"
             )
         );
         String fileContent = context.generate(
@@ -162,7 +165,8 @@ public class ManagerPluginNewWizard extends Wizard implements INewWizard {
         file = root.getFile(path);
         context = new Templater(
             this.getClass().getClassLoader().getResourceAsStream(
-                "templates/META-INF/spring/context.xml"
+                TEMPLATE_FOLDER_FOO_MANAGER +
+                "META-INF/spring/context.xml"
             )
         );
         fileContent = context.generate(
@@ -176,7 +180,7 @@ public class ManagerPluginNewWizard extends Wizard implements INewWizard {
         file = root.getFile(path);
         context = new Templater(
             this.getClass().getClassLoader().getResourceAsStream(
-                "templates/plugin.xml"
+                TEMPLATE_FOLDER_FOO_MANAGER + "plugin.xml"
             )
         );
         fileContent = context.generate(
@@ -190,7 +194,7 @@ public class ManagerPluginNewWizard extends Wizard implements INewWizard {
         file = root.getFile(path);
         context = new Templater(
             this.getClass().getClassLoader().getResourceAsStream(
-                "templates/build.properties"
+                TEMPLATE_FOLDER_FOO_MANAGER +"build.properties"
             )
         );
         fileContent = context.generate(); // nothing to change
@@ -204,7 +208,7 @@ public class ManagerPluginNewWizard extends Wizard implements INewWizard {
         file = root.getFile(path);
         context = new Templater(
             this.getClass().getClassLoader().getResourceAsStream(
-                "templates/src/Activator.java"
+                TEMPLATE_FOLDER_FOO_MANAGER + "src/Activator.java"
             )
         );
         fileContent = context.generate(
@@ -229,7 +233,7 @@ public class ManagerPluginNewWizard extends Wizard implements INewWizard {
             file = root.getFile(path);
             context = new Templater(
                 this.getClass().getClassLoader().getResourceAsStream(
-                    "templates/src/" + sourceFile
+                    TEMPLATE_FOLDER_FOO_MANAGER + "src/" + sourceFile
                 )
             );
             fileContent = context.generate(
