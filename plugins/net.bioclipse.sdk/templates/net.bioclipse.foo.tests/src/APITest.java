@@ -8,12 +8,12 @@
  *
  * Contact: Bioclipse Project <http://www.bioclipse.net>
  ******************************************************************************/
-package ${managerName}.tests;
+package ${packageName}.tests;
 
 import net.bioclipse.core.tests.AbstractManagerTest;
 import net.bioclipse.managers.business.IBioclipseManager;
-import net.bioclipse.rdf.business.IRDFManager;
-import net.bioclipse.rdf.business.RDFManager;
+import ${packageName}.I${managerName};
+import ${packageName}.${managerName};
 
 /**
  * JUnit tests for checking if the tested Manager is properly tested.

@@ -8,7 +8,7 @@
  * 
  * Contact: http://www.bioclipse.net/    
  ******************************************************************************/
-package ${managerName}.tests;
+package ${packageName}.tests;
 
 import org.junit.BeforeClass;
 
