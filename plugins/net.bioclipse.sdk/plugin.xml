@@ -16,5 +16,29 @@
             id="net.bioclipse.sdk.wizards.ManagerPluginNewWizard">
       </wizard>
    </extension>
+   <extension
+         point="org.eclipse.pde.ui.pluginContent">
+      <wizard
+            class="net.bioclipse.sdk.pdewizard.ManagerWizard"
+            icon="icons/bioclipse_16.png"
+            id="net.bioclipse.sdk.template.wizard"
+            java="true"
+            name="Bioclipse Manager Wizard"
+            pureOSGi="false"
+            rcp="false"
+            requiresActivator="false"
+            ui-content="true">
+      </wizard>
+   </extension>
+   <extension
+         point="org.eclipse.pde.ui.templates">
+      <template
+            class="net.bioclipse.sdk.pdewizard.ManagerWizard"
+            contributingId="net.bioclipse.core.net.bioclipse.core.scriptingContribution"
+            icon="icons/bioclipse_16.png"
+            id="net.bioclipse.sdk.manager.template"
+            name="Bioclipse Manager">
+      </template>
+   </extension>
 
 </plugin>
