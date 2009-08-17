@@ -108,6 +108,18 @@ public class TestProjectCreator {
         fileContent = context.generate(); // nothing to change
         createFile(monitor, file, fileContent);
 
+        // .gitignore
+        path = projectPath.append(".gitignore");
+        file = root.getFile(path);
+        context = new Templater(
+            this.getClass().getClassLoader().getResourceAsStream(
+                TEMPLATE_FOLDER_FOO_MANAGER +
+                "dotGitignore"
+            )
+        );
+        fileContent = context.generate();
+        createFile(monitor, file, fileContent);
+
         // Activator.java
         IPath javaPkgPath = projectPath.append("src");
         for (String part : packageName.split("\\."))
