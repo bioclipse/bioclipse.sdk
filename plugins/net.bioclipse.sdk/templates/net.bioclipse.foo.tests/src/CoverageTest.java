@@ -8,12 +8,12 @@
  *
  * Contact: Bioclipse Project <http://www.bioclipse.net>
  ******************************************************************************/
-package ${packageName}.tests;
+package ${packageName}.tests.business;
 
 import net.bioclipse.core.tests.coverage.AbstractCoverageTest;
 import net.bioclipse.managers.business.IBioclipseManager;
-import ${packageName}.I${managerName};
-import ${packageName}.${managerName};
+import ${packageName}.business.I${managerName};
+import ${packageName}.business.${managerName};
 
 /**
  * JUnit tests for checking if the tested Manager is properly tested.
@@ -29,7 +29,7 @@ public class CoverageTest extends AbstractCoverageTest {
 
     @Override
     public Class<? extends IBioclipseManager> getManagerInterface() {
-        return IRDFManager.class;
+        return I${managerName}.class;
     }
 
 }

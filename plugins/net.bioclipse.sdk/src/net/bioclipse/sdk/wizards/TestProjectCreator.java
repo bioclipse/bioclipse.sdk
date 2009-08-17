@@ -112,6 +112,7 @@ public class TestProjectCreator {
         IPath javaPkgPath = projectPath.append("src");
         for (String part : packageName.split("\\."))
             javaPkgPath = javaPkgPath.append(part);
+        javaPkgPath = javaPkgPath.append("tests");
         path = javaPkgPath.append("Activator.java");
         file = root.getFile(path);
         context = new Templater(
@@ -135,7 +136,7 @@ public class TestProjectCreator {
             "JavaManagerPluginTest.java",
             "JavaScriptManagerPluginTest.java"
         };
-        IPath businessPath = javaPkgPath.append("tests");
+        IPath businessPath = javaPkgPath.append("business");
         for (String sourceFile : sourceFiles) {
             String targetFile = sourceFile.replace(
                 "Manager", managerName
@@ -184,8 +185,9 @@ public class TestProjectCreator {
         IPath path = projectPath.append("src");
         for (String part : packageName.split("\\."))
             path = path.append(part);
+        path = path.append("tests");
         createFolderHelper(root.getFolder(path), monitor);
-        IPath bussinesPath = path.append("tests");
+        IPath bussinesPath = path.append("business");
         createFolderHelper(root.getFolder(bussinesPath), monitor);
         return projectPath;
     }

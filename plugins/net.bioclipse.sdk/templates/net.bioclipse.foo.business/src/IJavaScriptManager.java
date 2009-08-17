@@ -12,7 +12,7 @@ package ${packageName}.business;
 
 import net.bioclipse.managers.business.IBioclipseJSManager;
 
-public interface IJavaScripto${managerName} 
+public interface IJavaScript${managerName} 
        extends I${managerName}, IBioclipseJSManager {
 
 }

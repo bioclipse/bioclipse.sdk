@@ -8,7 +8,9 @@
  * 
  * Contact: http://www.bioclipse.net/    
  ******************************************************************************/
-package ${packageName}.tests;
+package ${packageName}.tests.business;
+
+import ${packageName}.Activator;
 
 import org.junit.BeforeClass;
 
@@ -16,7 +18,7 @@ public class Java${managerName}PluginTest
     extends Abstract${managerName}PluginTest {
 
     @BeforeClass public static void setup() {
-        rdf = ${managerName}.Activator.getDefault().getJavaManager();
+        ${managerNamespace} = Activator.getDefault().getJava${managerName}();
     }
 
 }

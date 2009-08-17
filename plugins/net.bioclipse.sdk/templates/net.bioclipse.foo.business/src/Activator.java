@@ -10,7 +10,9 @@
 ******************************************************************************/
 package ${packageName};
 
-import net.bioclipse.core.util.LogUtils;
+import ${packageName}.business.IAaaManager;
+import ${packageName}.business.IJavaAaaManager;
+import ${packageName}.business.IJavaScriptAaaManager;
 
 import org.apache.log4j.Logger;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
@@ -78,8 +80,7 @@ public class Activator extends AbstractUIPlugin {
         }
         if (manager == null) {
             throw new IllegalStateException(
-                          "Could not get the Java ${managerName}",
-                          e );
+                          "Could not get the Java ${managerName}");
         }
         return manager;
     }
@@ -97,8 +98,7 @@ public class Activator extends AbstractUIPlugin {
         }
         if (manager == null) {
             throw new IllegalStateException(
-                          "Could not get the JavaScript ${managerName}",
-                          e );
+                          "Could not get the JavaScript ${managerName}");
         }
         return manager;
     }

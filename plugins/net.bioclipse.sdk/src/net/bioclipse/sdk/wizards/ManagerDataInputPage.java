@@ -180,7 +180,7 @@ public class ManagerDataInputPage extends WizardPage implements Listener{
 			StringBuilder n = new StringBuilder( mName.substring(1));
 			n.insert(0, Character.toUpperCase(ch)).append("Manager");
 			managerName.setText(n.toString());
-			packageName.setText(initialPluginName+".business");
+			packageName.setText(initialPluginName);
 		}
 
 	}
