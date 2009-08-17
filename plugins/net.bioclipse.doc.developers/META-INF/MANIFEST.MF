@@ -6,4 +6,3 @@ Bundle-Version: 2.1.0.v20090807
 Bundle-Vendor: The Bioclipse Team
 Bundle-ActivationPolicy: lazy
 Import-Package: org.apache.log4j
-Require-Bundle: net.bioclipse.core
