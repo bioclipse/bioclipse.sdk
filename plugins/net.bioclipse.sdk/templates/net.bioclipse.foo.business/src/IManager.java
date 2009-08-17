@@ -11,7 +11,7 @@
 package ${packageName}.business;
 
 import net.bioclipse.core.PublishedClass;
-import net.bioclipse.managers.business.IBioclipseManager
+import net.bioclipse.managers.business.IBioclipseManager;
 
 @PublishedClass(
     value="TODO: Describe the manager here."

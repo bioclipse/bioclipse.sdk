@@ -15,5 +15,6 @@ Require-Bundle:
  net.sf.cglib,
  org.springframework.osgi.aopalliance.osgi
 Bundle-ActivationPolicy: lazy
-Export-Package: ${packageName}
+Export-Package: ${packageName},
+ ${packageName}.business
 Import-Package: org.apache.log4j

@@ -10,9 +10,9 @@
 ******************************************************************************/
 package ${packageName};
 
-import ${packageName}.business.IAaaManager;
-import ${packageName}.business.IJavaAaaManager;
-import ${packageName}.business.IJavaScriptAaaManager;
+import ${packageName}.business.I${managerName}Manager;
+import ${packageName}.business.IJava${managerName}Manager;
+import ${packageName}.business.IJavaScript${managerName}Manager;
 
 import org.apache.log4j.Logger;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
