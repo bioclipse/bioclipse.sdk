@@ -16,6 +16,7 @@ import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.pde.core.plugin.IPluginBase;
 import org.eclipse.pde.core.plugin.IPluginElement;
 import org.eclipse.pde.core.plugin.IPluginExtension;
+import org.eclipse.pde.core.plugin.IPluginImport;
 import org.eclipse.pde.core.plugin.IPluginModelBase;
 import org.eclipse.pde.core.plugin.IPluginModelFactory;
 import org.eclipse.pde.core.plugin.IPluginReference;
@@ -72,10 +73,9 @@ public class ManagerTemplate extends OptionTemplateSection {
 			n.insert(0, Character.toUpperCase(ch)).append("Manager");
 			initializeOption(KEY_MANAGER_NAME, n.toString());
 
-
 			initializeOption(KEY_NAMESPACE, mName);
 
-//			initializeOption(KEY_PACKAGE_NAME, packageName+".business");
+			initializeOption(KEY_PACKAGE_NAME, packageName);
 	}
 	@Override
 	protected URL getInstallURL() {
@@ -106,22 +106,23 @@ public class ManagerTemplate extends OptionTemplateSection {
 		IPluginBase plugin = model.getPluginBase();
 		IPluginModelFactory factory = model.getPluginFactory();
 
+		String packageName = getFormattedPackageName(plugin.getId())+".business";
 		IPluginExtension extension = createExtension(
-		"net.bioclipse.scripting.contribution",
-		true);
+					"net.bioclipse.scripting.contribution", true);
 
 		IPluginElement element = factory.createElement(extension);
-		element.setName("Manager");
-		element.setAttribute("id", getStringOption(KEY_PACKAGE_NAME)
+		element.setName("scriptContribution");
+		element.setAttribute("id", packageName
 								  + "."
 								  + getStringOption(KEY_MANAGER_NAME)
 								  );
-		element.setAttribute("service", getStringOption(KEY_PACKAGE_NAME)
+		element.setAttribute("service", packageName
 									   + "."
 				  					   + getStringOption(KEY_MANAGER_NAME)
-				  					   + "Factory.java");
+				  					   + "Factory");
 		extension.add(element);
 		plugin.add(extension);
+
 	}
 
 
@@ -142,7 +143,8 @@ public class ManagerTemplate extends OptionTemplateSection {
 				 "net.bioclipse.ui",
 				 "org.springframework.bundle.spring.aop",
 				 "net.sf.cglib",
-				 "org.springframework.osgi.aopalliance.osgi"
+				 "org.springframework.osgi.aopalliance.osgi",
+				 "org.apache.log4j"
 		);
 	}
 
