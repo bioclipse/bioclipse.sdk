@@ -153,7 +153,8 @@ public class ManagerDataInputPage extends WizardPage implements Listener{
 			managerNameStatus = status;
 		}
 	     if(event.widget == namespace) {
-	    	 if(!namespaceChanged) namespaceChanged = true;
+	    	 if(namespace.getText().trim().length()>0) namespaceChanged = true;
+	    	 else namespaceChanged = false;
 	    	 if(namespace.getText().contains(" ")) {
 	    		 status = new Status( IStatus.WARNING, Activator.PLUGIN_ID,
 	    				 "Namespace not contain spaces",null);
