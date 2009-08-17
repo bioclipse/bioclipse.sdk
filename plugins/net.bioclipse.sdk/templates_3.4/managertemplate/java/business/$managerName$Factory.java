@@ -8,13 +8,14 @@
 *
 * Contact: http://www.bioclipse.net/
 ******************************************************************************/
-
 package $packageName$.business;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IExecutableExtension;
 import org.eclipse.core.runtime.IExecutableExtensionFactory;
+
+import $packageName$.Activator;
 
 /**
  * Factory used for giving the manager to extension points.

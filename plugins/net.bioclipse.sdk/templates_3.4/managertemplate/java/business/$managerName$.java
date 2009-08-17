@@ -10,6 +10,10 @@
  ******************************************************************************/
 package $packageName$.business;
 
+import net.bioclipse.managers.business.IBioclipseManager;
+
+import org.apache.log4j.Logger;
+
 public class $managerName$ implements IBioclipseManager {
 
     private static final Logger logger = Logger.getLogger($managerName$.class);
@@ -19,6 +23,6 @@ public class $managerName$ implements IBioclipseManager {
      * scripting.
      */
     public String getManagerName() {
-        return $managerNamespace$;
+        return "$managerNamespace$";
     }
 }
