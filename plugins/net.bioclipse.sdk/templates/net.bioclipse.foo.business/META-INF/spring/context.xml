@@ -8,11 +8,11 @@
 
   <osgi:service id="java${managerName}OSGI"
                 ref="java${managerName}"
-                interface="${packageName}.IJava${managerName}" />
+                interface="${packageName}.business.IJava${managerName}" />
 
   <osgi:service id="javaScript${managerName}OSGI" 
                 ref="javaScript${managerName}"
-                interface="${packageName}.IJavaScript${managerName}" />
+                interface="${packageName}.business.IJavaScript${managerName}" />
 
   <osgi:reference id="recordingAdvice" 
                   interface="net.bioclipse.recording.IRecordingAdvice" />
@@ -33,7 +33,7 @@
   </bean>
 
   <bean id="${managerName}Target"
-        class="${packageName}.${managerName}">
+        class="${packageName}.business.${managerName}">
   </bean>
 
   <bean id="javaScript${managerName}"
@@ -41,7 +41,7 @@
     <property name="target"
               ref="${managerName}Target" />
     <property name="proxyInterfaces"
-              value="${packageName}.I${managerName}" />
+              value="${packageName}.business.I${managerName}" />
     <property name="interceptorNames" >
         <list>
             <value>recordingAdvisor</value>
@@ -56,7 +56,7 @@
     <property name="target"
               ref="${managerName}Target" />
     <property name="proxyInterfaces"
-              value="${packageName}.I${managerName}" />
+              value="${packageName}.business.I${managerName}" />
     <property name="interceptorNames" >
         <list>
                 <value>recordingAdvisor</value>
