@@ -29,7 +29,7 @@ is available at http://www.eclipse.org/legal/epl-v10.html
    </license>
 
    <url>
-      <update label="Bioclipse SDK Update Site" url="http://pele.farmbio.uu.se/cdk"/>
+      <update label="Bioclipse SDK Update Site" url="http://pele.farmbio.uu.se/sdk"/>
    </url>
 
    <requires>
