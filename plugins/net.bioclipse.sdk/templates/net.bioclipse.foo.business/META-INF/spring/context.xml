@@ -41,7 +41,7 @@
     <property name="target"
               ref="${managerName}Target" />
     <property name="proxyInterfaces"
-              value="${packageName}.business.I${managerName}" />
+              value="${packageName}.business.IJavaScript${managerName}" />
     <property name="interceptorNames" >
         <list>
             <value>recordingAdvisor</value>
@@ -56,7 +56,7 @@
     <property name="target"
               ref="${managerName}Target" />
     <property name="proxyInterfaces"
-              value="${packageName}.business.I${managerName}" />
+              value="${packageName}.business.IJava${managerName}" />
     <property name="interceptorNames" >
         <list>
                 <value>recordingAdvisor</value>
