@@ -1,4 +1,6 @@
+artifacts.jar
 artifacts.xml
+content.jar
 content.xml
 features/
 plugins/
