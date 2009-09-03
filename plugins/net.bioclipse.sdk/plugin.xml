@@ -3,20 +3,6 @@
 <plugin>
 
    <extension
-         point="org.eclipse.ui.newWizards">
-      <category
-            name="Bioclipse New Wizards"
-            id="net.bioclipse.sdk.newmanagerplugin">
-      </category>
-      <wizard
-            name="New Manager Plugin Wizard"
-            icon="icons/logo.gif"
-            category="net.bioclipse.sdk.newmanagerplugin"
-            class="net.bioclipse.sdk.wizards.ManagerPluginNewWizard"
-            id="net.bioclipse.sdk.wizards.ManagerPluginNewWizard">
-      </wizard>
-   </extension>
-   <extension
          point="org.eclipse.pde.ui.pluginContent">
       <wizard
             class="net.bioclipse.sdk.pdewizard.ManagerWizard"
@@ -24,6 +10,17 @@
             id="net.bioclipse.sdk.template.wizard"
             java="true"
             name="Bioclipse Manager Wizard"
+            pureOSGi="false"
+            rcp="false"
+            requiresActivator="false"
+            ui-content="true">
+      </wizard>
+      <wizard
+            class="net.bioclipse.sdk.pdewizard.ManagerTestWizard"
+            icon="icons/bioclipse_16.png"
+            id="net.bioclipse.sdk.template.test.wizard"
+            java="true"
+            name="Bioclipse Manager Unit Testing Wizard"
             pureOSGi="false"
             rcp="false"
             requiresActivator="false"
@@ -38,6 +35,13 @@
             icon="icons/bioclipse_16.png"
             id="net.bioclipse.sdk.manager.template"
             name="Bioclipse Manager">
+      </template>
+      <template
+            class="net.bioclipse.sdk.pdewizard.ManagerTestWizard"
+            contributingId="net.bioclipse.core.net.bioclipse.core.unitTests"
+            icon="icons/bioclipse_16.png"
+            id="net.bioclipse.sdk.manager.test.template"
+            name="Bioclipse Manager Tests">
       </template>
    </extension>
 
