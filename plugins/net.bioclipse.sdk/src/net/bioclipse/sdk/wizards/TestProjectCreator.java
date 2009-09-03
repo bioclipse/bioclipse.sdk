@@ -32,7 +32,6 @@ import org.eclipse.jdt.core.IClasspathEntry;
 import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jdt.core.JavaCore;
 import org.eclipse.pde.internal.core.ClasspathComputer;
-import org.eclipse.pde.internal.core.ExecutionEnvironmentAnalyzer;
 import org.eclipse.ui.dialogs.WizardNewProjectCreationPage;
 
 public class TestProjectCreator {
@@ -233,10 +232,10 @@ public class TestProjectCreator {
     private IClasspathEntry[] getClassPathEntries(IJavaProject project) {
         IClasspathEntry[] entries = new IClasspathEntry[3];
         String executionEnvironment = null;
-        ClasspathComputer.setComplianceOptions(
-            project,
-            ExecutionEnvironmentAnalyzer.getCompliance(executionEnvironment)
-        );
+//        ClasspathComputer.setComplianceOptions(
+//            project,
+//            ExecutionEnvironmentAnalyzer.getCompliance(executionEnvironment)
+//        );
         entries[0] = ClasspathComputer.createJREEntry(executionEnvironment);
         entries[1] = ClasspathComputer.createContainerEntry();
         IPath path = project.getProject().getFullPath().append("src/");
