@@ -33,9 +33,9 @@ is available at http://www.eclipse.org/legal/epl-v10.html
    </url>
 
    <requires>
-      <import feature="org.eclipse.jdt" version="3.4.2.r342_v20081217-7o7tEAoEEDWEm5HTrKn-svO4BbDI"/>
-      <import feature="org.eclipse.pde" version="3.4.2.R342_v20090122-7T7U1E9imVKz-A8Vz-p_jRS"/>
-      <import feature="org.eclipse.platform" version="3.4.2.R342_v20090122-9I96EiWElHi8lheoJKJIvhM3JfVsYbRrgVIWL"/>
+      <import feature="org.eclipse.jdt" version="3.5.0.v20090527-2000-7r88FEeFJePyvYeA33DjZ_c1"/>
+      <import feature="org.eclipse.platform" version="3.5.0.v20090611a-9gEeG1HFtQcmRThO4O3aR_fqSMvJR2sJ"/>
+      <import feature="org.eclipse.pde" version="3.5.0.v20090123-7Z7_F8NFE-z0VXhWiu-8Qb95"/>
    </requires>
 
    <plugin
