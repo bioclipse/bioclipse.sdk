@@ -143,10 +143,15 @@ public class ManagerTemplate extends OptionTemplateSection {
 				 "net.bioclipse.ui",
 				 "org.springframework.bundle.spring.aop",
 				 "net.sf.cglib",
-				 "org.springframework.osgi.aopalliance.osgi",
-				 "org.apache.log4j"
+				 "org.springframework.osgi.aopalliance.osgi"
 		);
 	}
+
+	public String[] getImportPackages() {
+        return new String[]{
+            "org.apache.log4j"
+        };
+    }
 
 	private IPluginReference[] createDependencies(String... plugins) {
 		List<IPluginReference> deps = new ArrayList<IPluginReference>();
