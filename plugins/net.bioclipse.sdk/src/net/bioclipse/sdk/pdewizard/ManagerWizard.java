@@ -21,5 +21,13 @@ public class ManagerWizard extends NewPluginTemplateWizard {
 	public ITemplateSection[] createTemplateSections() {
 		return new ITemplateSection[] {new ManagerTemplate()};
 	}
+	
+	@Override
+	public String[] getImportPackages() {
+	    String[] pkgs = {
+	       "org.apache.log4j"
+	    };
+	    return pkgs;
+	}
 
 }

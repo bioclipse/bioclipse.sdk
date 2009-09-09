@@ -22,4 +22,13 @@ public class ManagerTestWizard extends NewPluginTemplateWizard {
 		return new ITemplateSection[] {new ManagerTemplate()};
 	}
 
+    @Override
+    public String[] getImportPackages() {
+        String[] superPkg = super.getImportPackages();
+        String[] pkgs = new String[superPkg.length+1];
+        System.arraycopy(superPkg, 0, pkgs, 0, superPkg.length);
+        pkgs[pkgs.length-1] = "org.apache.log4j";
+        return pkgs;
+    }
+
 }
