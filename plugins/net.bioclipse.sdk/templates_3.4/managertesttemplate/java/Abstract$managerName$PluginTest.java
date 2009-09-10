@@ -8,7 +8,7 @@
  *
  * Contact: http://www.bioclipse.net/
  ******************************************************************************/
-package $packageName$.test;
+package $packageName$;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -17,7 +17,7 @@ import java.net.URL;
 import java.util.List;
 
 import net.bioclipse.core.ResourcePathTransformer;
-import $packageName$.business.I$managerName$;
+import $managerPackage$.business.I$managerName$;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.FileLocator;

@@ -8,17 +8,19 @@
  *
  * Contact: Bioclipse Project <http://www.bioclipse.net>
  ******************************************************************************/
-package ${packageName}.tests.business;
+package $packageName$;
 
-import net.bioclipse.core.tests.coverage.AbstractCoverageTest;
+import net.bioclipse.core.tests.AbstractManagerTest;
 import net.bioclipse.managers.business.IBioclipseManager;
-import $packageName$.business.I$managerName$;
-import $packageName$.business.$managerName$;
+import $managerPackage$.business.I$managerName$;
+import $managerPackage$.business.$managerName$;
 
 /**
  * JUnit tests for checking if the tested Manager is properly tested.
+ * 
+ * @author egonw
  */
-public class CoverageTest extends AbstractCoverageTest {
+public class APITest extends AbstractManagerTest {
     
     private static $managerName$ manager = new $managerName$();
 

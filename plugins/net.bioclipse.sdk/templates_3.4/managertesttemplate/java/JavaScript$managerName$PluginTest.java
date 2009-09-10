@@ -8,9 +8,7 @@
  * 
  * Contact: http://www.bioclipse.net/    
  ******************************************************************************/
-package $packageName$.test;
-
-import $packageName$.Activator;
+package $packageName$;
 
 import org.junit.BeforeClass;
 

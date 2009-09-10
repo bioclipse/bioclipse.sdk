@@ -39,8 +39,7 @@ import org.eclipse.pde.ui.templates.PluginReference;
 public class ManagerTestTemplate extends OptionTemplateSection {
 
 	private static final String KEY_MANAGER_NAME = "managerName";
-	private static final String KEY_NAMESPACE = "managerNamespace";
-//	private static final String KEY_PACKAGE_MY_NAME = "packageName";
+    private static final String KEY_MANAGER_PACKAGE = "managerPackage";
     private static final String KEY_COPYRIGHTOWNER = "copyrightOwner";
     private static final String KEY_COPYRIGHTOWNER_EMAIL = "copyrightOwnerEmail";
     private static final String KEY_COPYRIGHTYEAR = "copyrightYear";
@@ -60,9 +59,8 @@ public class ManagerTestTemplate extends OptionTemplateSection {
 	}
 
 	private void createOptions() {
-		addOption(KEY_MANAGER_NAME, "Manager Name", null, 0);
-//		addOption(KEY_PACKAGE_NAME, "Package", null, 0);
-		addOption(KEY_NAMESPACE, "Namespace", null,0);
+		addOption(KEY_MANAGER_NAME, "Manager to be Tested", null, 0);
+        addOption(KEY_MANAGER_PACKAGE, "Manager's Plugin Root Package", null, 0);
         addOption(KEY_COPYRIGHTOWNER, "Author", null,0);
         addOption(KEY_COPYRIGHTOWNER_EMAIL, "Author's Email", null,0);
         addOption(KEY_COPYRIGHTYEAR, "Copyright Year", null,0);
@@ -81,17 +79,23 @@ public class ManagerTestTemplate extends OptionTemplateSection {
 	private void initFields(String packageName) {
 			if(packageName == null || packageName.length()<=0) return;
 
-			int lastIndex = packageName.lastIndexOf('.');
-			String mName = packageName.substring(lastIndex+1);
-
-			char ch = mName.charAt(0);
-			StringBuilder n = new StringBuilder( mName.substring(1));
-			n.insert(0, Character.toUpperCase(ch)).append("Manager");
-			initializeOption(KEY_MANAGER_NAME, n.toString());
-
-			initializeOption(KEY_NAMESPACE, mName);
-
-			initializeOption(KEY_PACKAGE_NAME, packageName);
+			String managerPackage = "net.bioclipse.some";
+            String mName = "SomeManager";
+			if (packageName.endsWith(".tests") ||
+			    packageName.endsWith(".test")) {
+			    int lastDotIndex = packageName.lastIndexOf('.');
+			    managerPackage = packageName.substring(0, lastDotIndex);
+			    int nextLastDotIndex = managerPackage.lastIndexOf('.');
+			    mName = packageName.substring(nextLastDotIndex+1,lastDotIndex);
+	            char ch = mName.charAt(0);
+	            StringBuilder n = new StringBuilder( mName.substring(1));
+	            n.insert(0, Character.toUpperCase(ch)).append("Manager");
+	            mName = n.toString();
+			}
+			
+			initializeOption(KEY_MANAGER_NAME, mName);
+            initializeOption(KEY_MANAGER_PACKAGE, managerPackage);
+			initializeOption(KEY_PACKAGE_NAME, mName);
 
             DateFormat df = new SimpleDateFormat("yyyy");
             Date today = new Date();
@@ -165,11 +169,13 @@ public class ManagerTestTemplate extends OptionTemplateSection {
 				 "org.eclipse.core.runtime",
                  "org.eclipse.core.resources",
 				 "net.bioclipse.core",
+                 "net.bioclipse.core.tests",
 				 "net.bioclipse.scripting",
 				 "org.springframework.bundle.spring.aop",
 				 "net.sf.cglib",
 				 "org.springframework.osgi.aopalliance.osgi",
-                 "org.junit4"
+                 "org.junit4",
+                 (String)getValue(KEY_MANAGER_PACKAGE)
 		);
 	}
 

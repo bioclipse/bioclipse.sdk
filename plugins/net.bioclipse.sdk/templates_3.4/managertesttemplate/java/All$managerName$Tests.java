@@ -8,7 +8,7 @@
  * 
  * Contact: http://www.bioclipse.net/    
  ******************************************************************************/
-package $packageName$.test;
+package $packageName$;
 
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
@@ -16,9 +16,9 @@ import org.junit.runners.Suite.SuiteClasses;
 
 @RunWith(Suite.class)
 @SuiteClasses({
-	Java$managerName$PluginTest.class,
-	JavaScript${managerName}PluginTest.class
+	APITest.class,
+	CoverageTest.class
 })
-public class All$managerName$PluginTests {
+public class All$managerName$Tests {
 
 }

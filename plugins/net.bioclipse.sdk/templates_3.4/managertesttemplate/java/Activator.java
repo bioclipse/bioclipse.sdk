@@ -18,7 +18,7 @@ import org.osgi.framework.BundleContext;
  */
 public class Activator extends AbstractUIPlugin {
 
-    public static final String PLUGIN_ID = "$packageName$.test";
+    public static final String PLUGIN_ID = "$packageName$";
     private static Activator sharedInstance;
     
     public Activator() {}

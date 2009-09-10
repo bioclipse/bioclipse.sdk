@@ -8,17 +8,15 @@
  * 
  * Contact: http://www.bioclipse.net/    
  ******************************************************************************/
-package ${packageName}.test;
+package $packageName$;
 
-import org.junit.runner.RunWith;
-import org.junit.runners.Suite;
-import org.junit.runners.Suite.SuiteClasses;
+import org.junit.BeforeClass;
 
-@RunWith(Suite.class)
-@SuiteClasses({
-	APITest.class,
-	CoverageTest.class
-})
-public class All$managerName$Tests {
+public class Java$managerName$PluginTest
+    extends Abstract$managerName$PluginTest {
+
+    @BeforeClass public static void setup() {
+        $managerNamespace$ = Activator.getDefault().getJava$managerName$();
+    }
 
 }

@@ -8,17 +8,17 @@
  * 
  * Contact: http://www.bioclipse.net/    
  ******************************************************************************/
-package $packageName$.tests.business;
+package $packageName$;
 
-import $packageName$.Activator;
+import org.junit.runner.RunWith;
+import org.junit.runners.Suite;
+import org.junit.runners.Suite.SuiteClasses;
 
-import org.junit.BeforeClass;
-
-public class Java$managerName$PluginTest
-    extends Abstract$managerName$PluginTest {
-
-    @BeforeClass public static void setup() {
-        $managerNamespace$ = Activator.getDefault().getJava$managerName$();
-    }
+@RunWith(Suite.class)
+@SuiteClasses({
+	Java$managerName$PluginTest.class,
+	JavaScript$managerName$PluginTest.class
+})
+public class All$managerName$PluginTests {
 
 }
