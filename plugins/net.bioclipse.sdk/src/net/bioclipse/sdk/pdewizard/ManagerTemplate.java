@@ -139,7 +139,6 @@ public class ManagerTemplate extends OptionTemplateSection {
 				 "org.eclipse.core.runtime",
 				 "net.bioclipse.core",
 				 "net.bioclipse.scripting",
-				 "net.bioclipse.ui",
 				 "org.springframework.bundle.spring.aop",
 				 "net.sf.cglib",
 				 "org.springframework.osgi.aopalliance.osgi"
