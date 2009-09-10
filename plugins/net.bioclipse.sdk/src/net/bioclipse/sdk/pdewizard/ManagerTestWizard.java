@@ -1,4 +1,5 @@
 /* Copyright (c) 2009  Arvid Berg <arvid.berg@farmbio.uu.se>
+ *               2009  Egon Willighagen <egonw@user.sf.net>
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -33,11 +34,9 @@ public class ManagerTestWizard extends NewPluginTemplateWizard {
 
     @Override
     public String[] getImportPackages() {
-        String[] superPkg = super.getImportPackages();
-        String[] pkgs = new String[superPkg.length+1];
-        System.arraycopy(superPkg, 0, pkgs, 0, superPkg.length);
-        pkgs[pkgs.length-1] = "org.apache.log4j";
-        return pkgs;
+        return new String[]{
+            "org.apache.log4j"
+        };
     }
 
 }

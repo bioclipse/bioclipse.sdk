@@ -1,4 +1,5 @@
 /* Copyright (c) 2009  Arvid Berg <arvid.berg@farmbio.uu.se>
+ *               2009  Egon Willighagen <egonw@user.sf.net>
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -20,6 +21,7 @@ import java.util.ResourceBundle;
 
 import net.bioclipse.sdk.Activator;
 
+import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.Platform;
@@ -31,6 +33,8 @@ import org.eclipse.pde.core.plugin.IPluginExtension;
 import org.eclipse.pde.core.plugin.IPluginModelBase;
 import org.eclipse.pde.core.plugin.IPluginModelFactory;
 import org.eclipse.pde.core.plugin.IPluginReference;
+import org.eclipse.pde.internal.core.bundle.BundlePluginBase;
+import org.eclipse.pde.internal.core.ibundle.IBundle;
 import org.eclipse.pde.internal.ui.IHelpContextIds;
 import org.eclipse.pde.ui.IFieldData;
 import org.eclipse.pde.ui.templates.OptionTemplateSection;
@@ -179,12 +183,6 @@ public class ManagerTestTemplate extends OptionTemplateSection {
 		);
 	}
 
-    public String[] getImportPackages() {
-        return new String[]{
-            "org.apache.log4j"
-        };
-    }
-
 	private IPluginReference[] createDependencies(String... plugins) {
 		List<IPluginReference> deps = new ArrayList<IPluginReference>();
 		for(String dep:plugins) {
@@ -208,6 +206,17 @@ public class ManagerTestTemplate extends OptionTemplateSection {
 		return buffer.toString().toLowerCase(Locale.ENGLISH);
 	}
 
+	@Override
+	public void execute(IProject project, IPluginModelBase model,
+	        IProgressMonitor monitor) throws CoreException {
+	    IPluginBase pluginBase = model.createPluginBase();
+	    if (pluginBase instanceof BundlePluginBase) {
+	        IBundle bundle = ((BundlePluginBase) pluginBase).getBundle();
+	        bundle.setHeader("Import-Package", "org.apache.log4j");
+	    }
+	    super.execute(project, model, monitor);
+	}
+	
 	private String firstToLower(String s) {
 		StringBuilder n = new StringBuilder(s);
 		n.setCharAt(0, Character.toLowerCase(n.charAt(0)));
