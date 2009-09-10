@@ -10,7 +10,10 @@
 package net.bioclipse.sdk.pdewizard;
 
 import java.net.URL;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.ResourceBundle;
@@ -38,6 +41,9 @@ public class ManagerTestTemplate extends OptionTemplateSection {
 	private static final String KEY_MANAGER_NAME = "managerName";
 	private static final String KEY_NAMESPACE = "managerNamespace";
 //	private static final String KEY_PACKAGE_MY_NAME = "packageName";
+    private static final String KEY_COPYRIGHTOWNER = "copyrightOwner";
+    private static final String KEY_COPYRIGHTOWNER_EMAIL = "copyrightOwnerEmail";
+    private static final String KEY_COPYRIGHTYEAR = "copyrightYear";
 
 	public ManagerTestTemplate() {
 		super();
@@ -57,7 +63,9 @@ public class ManagerTestTemplate extends OptionTemplateSection {
 		addOption(KEY_MANAGER_NAME, "Manager Name", null, 0);
 //		addOption(KEY_PACKAGE_NAME, "Package", null, 0);
 		addOption(KEY_NAMESPACE, "Namespace", null,0);
-
+        addOption(KEY_COPYRIGHTOWNER, "Author", null,0);
+        addOption(KEY_COPYRIGHTOWNER_EMAIL, "Author's Email", null,0);
+        addOption(KEY_COPYRIGHTYEAR, "Copyright Year", null,0);
 	}
 
 	@Override
@@ -84,6 +92,15 @@ public class ManagerTestTemplate extends OptionTemplateSection {
 			initializeOption(KEY_NAMESPACE, mName);
 
 			initializeOption(KEY_PACKAGE_NAME, packageName);
+
+            DateFormat df = new SimpleDateFormat("yyyy");
+            Date today = new Date();
+            String year = "" + df.format(today);
+            initializeOption(KEY_COPYRIGHTYEAR, year);
+
+            initializeOption(KEY_COPYRIGHTOWNER, "Your Name");
+
+            initializeOption(KEY_COPYRIGHTOWNER_EMAIL, "you@example.com");
 	}
 	@Override
 	protected URL getInstallURL() {
