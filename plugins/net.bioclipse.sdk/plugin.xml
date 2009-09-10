@@ -14,6 +14,10 @@
             rcp="false"
             requiresActivator="false"
             ui-content="true">
+            <description>
+               Creates a new Plug-in project with the infrastructure for
+               a Bioclipse manager.
+            </description>
       </wizard>
       <wizard
             class="net.bioclipse.sdk.pdewizard.ManagerTestWizard"
@@ -25,6 +29,12 @@
             rcp="false"
             requiresActivator="false"
             ui-content="true">
+            <description>
+               Creates a new Plug-in project with the JUnit infrastructure
+               for testing a Bioclipse manager. Use the same manager name
+               and namespace as used when setting up the Bioclipse manager
+               Plug-in itself.
+            </description>
       </wizard>
    </extension>
    <extension
