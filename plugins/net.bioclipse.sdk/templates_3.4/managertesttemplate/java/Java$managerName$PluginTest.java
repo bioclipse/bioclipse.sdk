@@ -16,7 +16,8 @@ public class Java$managerName$PluginTest
     extends Abstract$managerName$PluginTest {
 
     @BeforeClass public static void setup() {
-        $managerNamespace$ = Activator.getDefault().getJava$managerName$();
+        $managerNamespace$ = $managerPackage$.Activator.getDefault()
+            .getJava$managerName$();
     }
 
 }
