@@ -28,7 +28,7 @@ public class ManagerTestWizard extends NewPluginTemplateWizard {
 	}
 	@Override
 	public ITemplateSection[] createTemplateSections() {
-		return new ITemplateSection[] {new ManagerTemplate()};
+		return new ITemplateSection[] {new ManagerTestTemplate()};
 	}
 
     @Override
