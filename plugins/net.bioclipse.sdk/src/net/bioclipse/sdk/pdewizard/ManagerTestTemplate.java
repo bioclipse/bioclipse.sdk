@@ -163,11 +163,13 @@ public class ManagerTestTemplate extends OptionTemplateSection {
 		return createDependencies(
 				 "org.eclipse.ui",
 				 "org.eclipse.core.runtime",
+                 "org.eclipse.core.resources",
 				 "net.bioclipse.core",
 				 "net.bioclipse.scripting",
 				 "org.springframework.bundle.spring.aop",
 				 "net.sf.cglib",
-				 "org.springframework.osgi.aopalliance.osgi"
+				 "org.springframework.osgi.aopalliance.osgi",
+                 "org.junit4"
 		);
 	}
 
