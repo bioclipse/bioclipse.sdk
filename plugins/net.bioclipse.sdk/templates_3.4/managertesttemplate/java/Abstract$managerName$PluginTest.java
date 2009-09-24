@@ -29,7 +29,7 @@ public abstract class Abstract$managerName$PluginTest {
     protected static I$managerName$ $managerNamespace$;
     
     @Test public void testDoSomething() {
-        // FIXME: $managerNamespace$.doSomething();
+        Assert.fail("This method should test something.");
     }
 
 }
