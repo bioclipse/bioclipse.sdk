@@ -17,6 +17,7 @@ import java.net.URL;
 import java.util.List;
 
 import net.bioclipse.core.ResourcePathTransformer;
+import net.bioclipse.core.tests.AbstractManagerTest;
 import $managerPackage$.business.I$managerName$;
 
 import org.eclipse.core.resources.IFile;
@@ -24,7 +25,8 @@ import org.eclipse.core.runtime.FileLocator;
 import org.junit.Assert;
 import org.junit.Test;
 
-public abstract class Abstract$managerName$PluginTest {
+public abstract class Abstract$managerName$PluginTest
+extends AbstractManagerTest {
 
     protected static I$managerName$ $managerNamespace$;
     
