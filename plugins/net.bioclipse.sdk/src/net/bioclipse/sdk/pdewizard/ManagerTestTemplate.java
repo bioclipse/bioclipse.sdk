@@ -28,10 +28,7 @@ import org.eclipse.core.runtime.Platform;
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.pde.core.plugin.IPluginBase;
-import org.eclipse.pde.core.plugin.IPluginElement;
-import org.eclipse.pde.core.plugin.IPluginExtension;
 import org.eclipse.pde.core.plugin.IPluginModelBase;
-import org.eclipse.pde.core.plugin.IPluginModelFactory;
 import org.eclipse.pde.core.plugin.IPluginReference;
 import org.eclipse.pde.internal.core.bundle.BundlePluginBase;
 import org.eclipse.pde.internal.core.ibundle.IBundle;
@@ -137,25 +134,6 @@ public class ManagerTestTemplate extends OptionTemplateSection {
 	@Override
 	protected void updateModel(IProgressMonitor monitor) throws CoreException {
 		IPluginBase plugin = model.getPluginBase();
-		IPluginModelFactory factory = model.getPluginFactory();
-
-		String packageName = getFormattedPackageName(plugin.getId())+".business";
-		IPluginExtension extension = createExtension(
-					"net.bioclipse.scripting.contribution", true);
-
-		IPluginElement element = factory.createElement(extension);
-		element.setName("scriptContribution");
-		element.setAttribute("id", packageName
-								  + "."
-								  + getStringOption(KEY_MANAGER_NAME)
-								  );
-		element.setAttribute("service", packageName
-									   + "."
-				  					   + getStringOption(KEY_MANAGER_NAME)
-				  					   + "Factory");
-		extension.add(element);
-		plugin.add(extension);
-
 	}
 
 
