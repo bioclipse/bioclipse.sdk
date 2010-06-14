@@ -3,7 +3,7 @@
    <description url="http://pele.farmbio.uu.se/sdk/">
       Update site for the Bioclipse SDK.
    </description>
-   <feature url="features/net.bioclipse.sdk_feature_1.1.9.v20090910.jar" id="net.bioclipse.sdk_feature" version="1.1.9.v20090910">
+   <feature url="features/net.bioclipse.sdk_feature_1.1.10.v20100614.jar" id="net.bioclipse.sdk_feature" version="1.1.10.v20100614">
       <category name="Bioclipse SDK"/>
    </feature>
    <category-def name="Bioclipse SDK" label="Bioclipse SDK"/>
