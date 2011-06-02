@@ -2,7 +2,7 @@
 <feature
       id="net.bioclipse.sdk_feature"
       label="Bioclipse SDK Feature"
-      version="1.1.10.v20100614"
+      version="1.1.11.v20110602"
       provider-name="The Bioclipse Team"
       plugin="net.bioclipse.sdk">
 
@@ -12,7 +12,7 @@
    </description>
 
    <copyright>
-      (C) 2005-2009 The Bioclipse Project contributors.
+      (C) 2005-2011 The Bioclipse Project contributors.
    </copyright>
 
    <license url="http://www.eclipse.org/org/documents/epl-v10.php">
@@ -33,16 +33,16 @@ is available at http://www.eclipse.org/legal/epl-v10.html
    </url>
 
    <requires>
-      <import feature="org.eclipse.jdt" version="3.5.0.v20090527-2000-7r88FEeFJePyvYeA33DjZ_c1"/>
-      <import feature="org.eclipse.platform" version="3.5.0.v20090611a-9gEeG1HFtQcmRThO4O3aR_fqSMvJR2sJ"/>
-      <import feature="org.eclipse.pde" version="3.5.0.v20090123-7Z7_F8NFE-z0VXhWiu-8Qb95"/>
+      <import feature="org.eclipse.jdt"/>
+      <import feature="org.eclipse.platform"/>
+      <import feature="org.eclipse.pde"/>
    </requires>
 
    <plugin
          id="net.bioclipse.sdk"
          download-size="0"
          install-size="0"
-         version="1.1.10"
+         version="1.1.11"
          unpack="false"/>
 
    <plugin
