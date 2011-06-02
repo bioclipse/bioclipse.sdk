@@ -156,7 +156,6 @@ public class ManagerTestTemplate extends OptionTemplateSection {
 				 "org.springframework.bundle.spring.aop",
 				 "net.sf.cglib",
 				 "org.springframework.osgi.aopalliance.osgi",
-                 "org.junit4",
                  (String)getValue(KEY_MANAGER_PACKAGE)
 		);
 	}
@@ -190,7 +189,10 @@ public class ManagerTestTemplate extends OptionTemplateSection {
 	    IPluginBase pluginBase = model.createPluginBase();
 	    if (pluginBase instanceof BundlePluginBase) {
 	        IBundle bundle = ((BundlePluginBase) pluginBase).getBundle();
-	        bundle.setHeader("Import-Package", "org.apache.log4j");
+	        bundle.setHeader(
+	        	"Import-Package",
+	        	"org.apache.log4j,org.junit"
+	        );
 	    }
 	    super.execute(project, model, monitor);
 	}
