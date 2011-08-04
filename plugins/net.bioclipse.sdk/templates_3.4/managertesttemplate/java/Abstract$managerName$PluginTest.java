@@ -18,6 +18,8 @@ import java.util.List;
 
 import net.bioclipse.core.ResourcePathTransformer;
 import net.bioclipse.core.tests.AbstractManagerTest;
+import net.bioclipse.managers.business.IBioclipseManager;
+import net.bioclipse.opentox.business.IOpentoxManager;
 import $managerPackage$.business.I$managerName$;
 
 import org.eclipse.core.resources.IFile;
@@ -34,4 +36,7 @@ extends AbstractManagerTest {
         Assert.fail("This method should test something.");
     }
 
+    public Class<? extends IBioclipseManager> getManagerInterface() {
+    	return I$managerName$.class;
+    }
 }
