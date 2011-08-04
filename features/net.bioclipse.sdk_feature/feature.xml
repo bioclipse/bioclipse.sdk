@@ -2,7 +2,7 @@
 <feature
       id="net.bioclipse.sdk_feature"
       label="Bioclipse SDK Feature"
-      version="1.1.12.v20110804"
+      version="1.1.13.v20110804"
       provider-name="The Bioclipse Team"
       plugin="net.bioclipse.sdk">
 
@@ -42,7 +42,7 @@ is available at http://www.eclipse.org/legal/epl-v10.html
          id="net.bioclipse.sdk"
          download-size="0"
          install-size="0"
-         version="1.1.12"
+         version="1.1.13"
          unpack="false"/>
 
    <plugin
