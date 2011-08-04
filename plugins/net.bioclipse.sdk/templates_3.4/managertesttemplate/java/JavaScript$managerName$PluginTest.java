@@ -20,4 +20,8 @@ public class JavaScript$managerName$PluginTest
             .getJavaScript$managerName$();
     }
 
+	@Override
+	public IBioclipseManager getManager() {
+		return $managerNamespace$;
+	}
 }

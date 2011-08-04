@@ -10,6 +10,8 @@
  ******************************************************************************/
 package $packageName$;
 
+import net.bioclipse.managers.business.IBioclipseManager;
+
 import org.junit.BeforeClass;
 
 public class Java$managerName$PluginTest
@@ -20,4 +22,8 @@ public class Java$managerName$PluginTest
             .getJava$managerName$();
     }
 
+	@Override
+	public IBioclipseManager getManager() {
+		return $managerNamespace$;
+	}
 }
