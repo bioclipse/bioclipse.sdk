@@ -191,7 +191,7 @@ public class ManagerTestTemplate extends OptionTemplateSection {
 	        IBundle bundle = ((BundlePluginBase) pluginBase).getBundle();
 	        bundle.setHeader(
 	        	"Import-Package",
-	        	"org.apache.log4j,\n org.junit,\n org.junit.runner,\n org.junit.runners"
+	        	"org.apache.log4j,\n org.junit,\n org.junit.runner,\n org.junit.runners,\n org.hamcrest"
 	        );
 	    }
 	    super.execute(project, model, monitor);
